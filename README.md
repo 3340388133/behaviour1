@@ -189,11 +189,10 @@ SBRNConfig(
 │   ├── alert_generator.py         # 告警生成
 │   └── benchmark/                 # 基准测试与对比实验
 │
-├── step1~step8*.py                # 完整处理管道脚本
-│   ├── step1_build_dataset_structure.py  # 数据集结构构建
-│   ├── step2_frame_extraction.py         # 视频帧提取
+├── step3~step8*.py                # 完整处理管道脚本
 │   ├── step3_person_tracking.py          # YOLOv8+StrongSORT 跟踪
-│   ├── step4_head_pose.py                # 头部姿态估计
+│   ├── step3_strongsort_tracking.py      # StrongSORT 专用跟踪
+│   ├── step4_head_pose.py                # 头部姿态估计 + Fallback
 │   ├── step5_build_dataset.py            # 训练数据集构建
 │   ├── step6_train_recognition.py        # 模型训练
 │   ├── step7_head_detection_inference.py # 推理（核心推理入口）
@@ -222,7 +221,6 @@ SBRNConfig(
 │   ├── sensitivity_fig*.png       # 参数敏感性分析
 │   └── table*.tex                 # LaTeX 实验结果表
 │
-├── scripts/                       # 辅助批处理脚本
 ├── configs/                       # 配置文件
 │
 ├── tests/test_recognition/        # 单元测试
