@@ -1,0 +1,135 @@
+# === 默认忽略所有内容，然后白名单添加 ===
+*
+
+# === 白名单：允许的目录结构 ===
+!.gitignore
+!README.md
+!CLAUDE.md
+!QUICKSTART.md
+!VIDEO_TRANSFORMER_GUIDE.md
+
+# --- 文档 ---
+!docs/
+!docs/**
+
+# --- 核心源码 ---
+!src/
+!src/**
+
+# --- 识别模块（核心创新） ---
+!src/recognition/
+!src/recognition/**
+
+# --- 融合模块 ---
+!src/fusion/
+!src/fusion/**
+
+# --- benchmark ---
+!src/benchmark/
+!src/benchmark/**
+
+# --- 主目录核心脚本 ---
+!run_full_pipeline.py
+!run_inference.py
+!run_inference_stable.py
+!run_pipeline.py
+!step1_build_dataset_structure.py
+!step2_frame_extraction.py
+!step3_person_tracking.py
+!step3_strongsort_tracking.py
+!step4_head_pose.py
+!step4b_merge_poses.py
+!step5_build_dataset.py
+!step6_train_recognition.py
+!step7_head_detection_inference.py
+!step7_visualize_results.py
+!step8_ablation_baseline.py
+!step8b_sensitivity.py
+!train_6class_balanced.py
+!train_sbrn_6class.py
+!train_video_transformer.py
+!inference_video_transformer.py
+!test_video_transformer.py
+!video_transformer_pipeline.py
+!analyze_videos.py
+
+# --- 图表生成脚本 ---
+!generate_ablation_figures.py
+!generate_all_figures.py
+!generate_architecture_figures.py
+!generate_composite_figures.py
+!generate_final_figures.py
+!generate_thesis_figures.py
+!generate_whenet_figures.py
+
+# --- 配置 ---
+!configs/
+!configs/**
+
+# --- 实验配置和结果（不含 crops 图片） ---
+!experiments/
+!experiments/configs/
+!experiments/configs/**
+!experiments/scripts/
+!experiments/scripts/**
+!experiments/*.json
+
+# --- 论文图表和报告 ---
+!thesis_figures/
+!thesis_figures/**
+
+# --- SuspiciousGazeDetection 核心代码 ---
+!SuspiciousGazeDetection/
+!SuspiciousGazeDetection/README.md
+!SuspiciousGazeDetection/requirements.txt
+!SuspiciousGazeDetection/configs/
+!SuspiciousGazeDetection/configs/**
+!SuspiciousGazeDetection/docs/
+!SuspiciousGazeDetection/docs/**
+!SuspiciousGazeDetection/src/
+!SuspiciousGazeDetection/src/**
+!SuspiciousGazeDetection/scripts/
+!SuspiciousGazeDetection/scripts/**
+!SuspiciousGazeDetection/run_all.py
+!SuspiciousGazeDetection/run_detection.py
+!SuspiciousGazeDetection/run_final.py
+!SuspiciousGazeDetection/run_final_v*.py
+
+# --- scripts 工具脚本 ---
+!scripts/
+!scripts/**
+
+# --- tools ---
+!tools/
+!tools/**
+
+# --- tests ---
+!tests/
+!tests/**
+
+# --- hpe_experiment ---
+!hpe_experiment/
+!hpe_experiment/**
+
+# --- 客户要求文档 ---
+!客户要求.md
+
+# --- 可疑人员识别报告PDF ---
+!可疑人员识别*.pdf
+
+# === 即使在白名单中也要排除的 ===
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+*.pt
+*.pth
+*.onnx
+*.weights
+*.mp4
+*.avi
+*.mov
+*.zip
+*.jpg
+*.jpeg
+.DS_Store
+.claude/

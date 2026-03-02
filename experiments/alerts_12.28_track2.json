@@ -1,0 +1,445 @@
+{
+  "video": "12.28",
+  "track_id": 2,
+  "summary": {
+    "total_windows": 30,
+    "suspicious_windows": 11,
+    "suspicious_rate": "36.7%"
+  },
+  "alerts": [
+    {
+      "rule": "sustained_side_gaze",
+      "rule_cn": "持续侧向观察",
+      "time_range": {
+        "start": 0.0,
+        "end": 2.0,
+        "duration": 2.0
+      },
+      "score": 1.0,
+      "reason": "在 0.0s–2.0s 内（2.0s），90% 时间侧向观察（|yaw| > 35°），超过 70% 阈值",
+      "details": {
+        "side_ratio": 0.898
+      }
+    },
+    {
+      "rule": "high_variability",
+      "rule_cn": "高变异性",
+      "time_range": {
+        "start": 0.0,
+        "end": 2.0,
+        "duration": 2.0
+      },
+      "score": 0.853,
+      "reason": "在 0.0s–2.0s 内（2.0s），yaw 角度标准差为 85.3°，超过 50° 阈值，头部朝向变化剧烈",
+      "details": {
+        "yaw_std": 85.33
+      }
+    },
+    {
+      "rule": "wide_range_turn",
+      "rule_cn": "大范围转头",
+      "time_range": {
+        "start": 0.0,
+        "end": 2.0,
+        "duration": 2.0
+      },
+      "score": 1.0,
+      "reason": "在 0.0s–2.0s 内（2.0s），yaw 角度范围达 312.6°，超过 120° 阈值，存在大范围转头行为",
+      "details": {
+        "yaw_range": 312.59
+      }
+    },
+    {
+      "rule": "high_variability",
+      "rule_cn": "高变异性",
+      "time_range": {
+        "start": 0.5,
+        "end": 2.5,
+        "duration": 2.0
+      },
+      "score": 0.81,
+      "reason": "在 0.5s–2.5s 内（2.0s），yaw 角度标准差为 81.0°，超过 50° 阈值，头部朝向变化剧烈",
+      "details": {
+        "yaw_std": 81.01
+      }
+    },
+    {
+      "rule": "wide_range_turn",
+      "rule_cn": "大范围转头",
+      "time_range": {
+        "start": 0.5,
+        "end": 2.5,
+        "duration": 2.0
+      },
+      "score": 1.0,
+      "reason": "在 0.5s–2.5s 内（2.0s），yaw 角度范围达 341.7°，超过 120° 阈值，存在大范围转头行为",
+      "details": {
+        "yaw_range": 341.69
+      }
+    },
+    {
+      "rule": "high_variability",
+      "rule_cn": "高变异性",
+      "time_range": {
+        "start": 1.0,
+        "end": 3.0,
+        "duration": 2.0
+      },
+      "score": 0.58,
+      "reason": "在 1.0s–3.0s 内（2.0s），yaw 角度标准差为 58.0°，超过 50° 阈值，头部朝向变化剧烈",
+      "details": {
+        "yaw_std": 57.99
+      }
+    },
+    {
+      "rule": "wide_range_turn",
+      "rule_cn": "大范围转头",
+      "time_range": {
+        "start": 1.0,
+        "end": 3.0,
+        "duration": 2.0
+      },
+      "score": 1.0,
+      "reason": "在 1.0s–3.0s 内（2.0s），yaw 角度范围达 359.0°，超过 120° 阈值，存在大范围转头行为",
+      "details": {
+        "yaw_range": 358.99
+      }
+    },
+    {
+      "rule": "high_variability",
+      "rule_cn": "高变异性",
+      "time_range": {
+        "start": 1.5,
+        "end": 3.5,
+        "duration": 2.0
+      },
+      "score": 0.52,
+      "reason": "在 1.5s–3.5s 内（2.0s），yaw 角度标准差为 52.0°，超过 50° 阈值，头部朝向变化剧烈",
+      "details": {
+        "yaw_std": 52.04
+      }
+    },
+    {
+      "rule": "wide_range_turn",
+      "rule_cn": "大范围转头",
+      "time_range": {
+        "start": 1.5,
+        "end": 3.5,
+        "duration": 2.0
+      },
+      "score": 1.0,
+      "reason": "在 1.5s–3.5s 内（2.0s），yaw 角度范围达 359.0°，超过 120° 阈值，存在大范围转头行为",
+      "details": {
+        "yaw_range": 358.99
+      }
+    },
+    {
+      "rule": "wide_range_turn",
+      "rule_cn": "大范围转头",
+      "time_range": {
+        "start": 3.5,
+        "end": 5.5,
+        "duration": 2.0
+      },
+      "score": 0.512,
+      "reason": "在 3.5s–5.5s 内（2.0s），yaw 角度范围达 123.0°，超过 120° 阈值，存在大范围转头行为",
+      "details": {
+        "yaw_range": 123.0
+      }
+    },
+    {
+      "rule": "wide_range_turn",
+      "rule_cn": "大范围转头",
+      "time_range": {
+        "start": 4.0,
+        "end": 6.0,
+        "duration": 2.0
+      },
+      "score": 0.512,
+      "reason": "在 4.0s–6.0s 内（2.0s），yaw 角度范围达 123.0°，超过 120° 阈值，存在大范围转头行为",
+      "details": {
+        "yaw_range": 123.0
+      }
+    },
+    {
+      "rule": "wide_range_turn",
+      "rule_cn": "大范围转头",
+      "time_range": {
+        "start": 4.5,
+        "end": 6.5,
+        "duration": 2.0
+      },
+      "score": 1.0,
+      "reason": "在 4.5s–6.5s 内（2.0s），yaw 角度范围达 352.8°，超过 120° 阈值，存在大范围转头行为",
+      "details": {
+        "yaw_range": 352.76
+      }
+    },
+    {
+      "rule": "wide_range_turn",
+      "rule_cn": "大范围转头",
+      "time_range": {
+        "start": 5.0,
+        "end": 7.0,
+        "duration": 2.0
+      },
+      "score": 1.0,
+      "reason": "在 5.0s–7.0s 内（2.0s），yaw 角度范围达 339.1°，超过 120° 阈值，存在大范围转头行为",
+      "details": {
+        "yaw_range": 339.08
+      }
+    },
+    {
+      "rule": "wide_range_turn",
+      "rule_cn": "大范围转头",
+      "time_range": {
+        "start": 5.5,
+        "end": 7.5,
+        "duration": 2.0
+      },
+      "score": 1.0,
+      "reason": "在 5.5s–7.5s 内（2.0s），yaw 角度范围达 241.2°，超过 120° 阈值，存在大范围转头行为",
+      "details": {
+        "yaw_range": 241.22
+      }
+    },
+    {
+      "rule": "wide_range_turn",
+      "rule_cn": "大范围转头",
+      "time_range": {
+        "start": 6.0,
+        "end": 8.0,
+        "duration": 2.0
+      },
+      "score": 1.0,
+      "reason": "在 6.0s–8.0s 内（2.0s），yaw 角度范围达 244.2°，超过 120° 阈值，存在大范围转头行为",
+      "details": {
+        "yaw_range": 244.2
+      }
+    },
+    {
+      "rule": "wide_range_turn",
+      "rule_cn": "大范围转头",
+      "time_range": {
+        "start": 6.5,
+        "end": 8.5,
+        "duration": 2.0
+      },
+      "score": 1.0,
+      "reason": "在 6.5s–8.5s 内（2.0s），yaw 角度范围达 267.6°，超过 120° 阈值，存在大范围转头行为",
+      "details": {
+        "yaw_range": 267.58
+      }
+    },
+    {
+      "rule": "wide_range_turn",
+      "rule_cn": "大范围转头",
+      "time_range": {
+        "start": 7.0,
+        "end": 9.0,
+        "duration": 2.0
+      },
+      "score": 1.0,
+      "reason": "在 7.0s–9.0s 内（2.0s），yaw 角度范围达 267.6°，超过 120° 阈值，存在大范围转头行为",
+      "details": {
+        "yaw_range": 267.58
+      }
+    },
+    {
+      "rule": "wide_range_turn",
+      "rule_cn": "大范围转头",
+      "time_range": {
+        "start": 7.5,
+        "end": 9.5,
+        "duration": 2.0
+      },
+      "score": 1.0,
+      "reason": "在 7.5s–9.5s 内（2.0s），yaw 角度范围达 267.6°，超过 120° 阈值，存在大范围转头行为",
+      "details": {
+        "yaw_range": 267.58
+      }
+    },
+    {
+      "rule": "sustained_side_gaze",
+      "rule_cn": "持续侧向观察",
+      "time_range": {
+        "start": 8.0,
+        "end": 10.0,
+        "duration": 2.0
+      },
+      "score": 1.0,
+      "reason": "在 8.0s–10.0s 内（2.0s），80% 时间侧向观察（|yaw| > 35°），超过 70% 阈值",
+      "details": {
+        "side_ratio": 0.8
+      }
+    },
+    {
+      "rule": "wide_range_turn",
+      "rule_cn": "大范围转头",
+      "time_range": {
+        "start": 8.0,
+        "end": 10.0,
+        "duration": 2.0
+      },
+      "score": 1.0,
+      "reason": "在 8.0s–10.0s 内（2.0s），yaw 角度范围达 252.9°，超过 120° 阈值，存在大范围转头行为",
+      "details": {
+        "yaw_range": 252.86
+      }
+    },
+    {
+      "rule": "sustained_side_gaze",
+      "rule_cn": "持续侧向观察",
+      "time_range": {
+        "start": 8.5,
+        "end": 10.5,
+        "duration": 2.0
+      },
+      "score": 1.0,
+      "reason": "在 8.5s–10.5s 内（2.0s），88% 时间侧向观察（|yaw| > 35°），超过 70% 阈值",
+      "details": {
+        "side_ratio": 0.881
+      }
+    },
+    {
+      "rule": "wide_range_turn",
+      "rule_cn": "大范围转头",
+      "time_range": {
+        "start": 8.5,
+        "end": 10.5,
+        "duration": 2.0
+      },
+      "score": 1.0,
+      "reason": "在 8.5s–10.5s 内（2.0s），yaw 角度范围达 315.0°，超过 120° 阈值，存在大范围转头行为",
+      "details": {
+        "yaw_range": 315.04
+      }
+    },
+    {
+      "rule": "sustained_side_gaze",
+      "rule_cn": "持续侧向观察",
+      "time_range": {
+        "start": 9.0,
+        "end": 11.0,
+        "duration": 2.0
+      },
+      "score": 1.0,
+      "reason": "在 9.0s–11.0s 内（2.0s），93% 时间侧向观察（|yaw| > 35°），超过 70% 阈值",
+      "details": {
+        "side_ratio": 0.932
+      }
+    },
+    {
+      "rule": "wide_range_turn",
+      "rule_cn": "大范围转头",
+      "time_range": {
+        "start": 9.0,
+        "end": 11.0,
+        "duration": 2.0
+      },
+      "score": 1.0,
+      "reason": "在 9.0s–11.0s 内（2.0s），yaw 角度范围达 313.2°，超过 120° 阈值，存在大范围转头行为",
+      "details": {
+        "yaw_range": 313.21
+      }
+    },
+    {
+      "rule": "sustained_side_gaze",
+      "rule_cn": "持续侧向观察",
+      "time_range": {
+        "start": 9.5,
+        "end": 11.5,
+        "duration": 2.0
+      },
+      "score": 1.0,
+      "reason": "在 9.5s–11.5s 内（2.0s），73% 时间侧向观察（|yaw| > 35°），超过 70% 阈值",
+      "details": {
+        "side_ratio": 0.729
+      }
+    },
+    {
+      "rule": "wide_range_turn",
+      "rule_cn": "大范围转头",
+      "time_range": {
+        "start": 9.5,
+        "end": 11.5,
+        "duration": 2.0
+      },
+      "score": 1.0,
+      "reason": "在 9.5s–11.5s 内（2.0s），yaw 角度范围达 310.4°，超过 120° 阈值，存在大范围转头行为",
+      "details": {
+        "yaw_range": 310.38
+      }
+    },
+    {
+      "rule": "sustained_side_gaze",
+      "rule_cn": "持续侧向观察",
+      "time_range": {
+        "start": 10.0,
+        "end": 12.0,
+        "duration": 2.0
+      },
+      "score": 1.0,
+      "reason": "在 10.0s–12.0s 内（2.0s），73% 时间侧向观察（|yaw| > 35°），超过 70% 阈值",
+      "details": {
+        "side_ratio": 0.729
+      }
+    },
+    {
+      "rule": "wide_range_turn",
+      "rule_cn": "大范围转头",
+      "time_range": {
+        "start": 10.0,
+        "end": 12.0,
+        "duration": 2.0
+      },
+      "score": 1.0,
+      "reason": "在 10.0s–12.0s 内（2.0s），yaw 角度范围达 308.9°，超过 120° 阈值，存在大范围转头行为",
+      "details": {
+        "yaw_range": 308.86
+      }
+    },
+    {
+      "rule": "sustained_side_gaze",
+      "rule_cn": "持续侧向观察",
+      "time_range": {
+        "start": 11.5,
+        "end": 13.5,
+        "duration": 2.0
+      },
+      "score": 1.0,
+      "reason": "在 11.5s–13.5s 内（2.0s），85% 时间侧向观察（|yaw| > 35°），超过 70% 阈值",
+      "details": {
+        "side_ratio": 0.85
+      }
+    },
+    {
+      "rule": "sustained_side_gaze",
+      "rule_cn": "持续侧向观察",
+      "time_range": {
+        "start": 12.0,
+        "end": 14.0,
+        "duration": 2.0
+      },
+      "score": 1.0,
+      "reason": "在 12.0s–14.0s 内（2.0s），88% 时间侧向观察（|yaw| > 35°），超过 70% 阈值",
+      "details": {
+        "side_ratio": 0.883
+      }
+    },
+    {
+      "rule": "sustained_side_gaze",
+      "rule_cn": "持续侧向观察",
+      "time_range": {
+        "start": 12.5,
+        "end": 14.5,
+        "duration": 2.0
+      },
+      "score": 1.0,
+      "reason": "在 12.5s–14.5s 内（2.0s），72% 时间侧向观察（|yaw| > 35°），超过 70% 阈值",
+      "details": {
+        "side_ratio": 0.717
+      }
+    }
+  ]
+}

@@ -1,0 +1,55 @@
+# Baseline配置 - 不使用任何创新点
+# 用于消融实验对比
+
+model:
+  name: "SBRN"
+  pose_input_dim: 3
+  d_model: 128
+  nhead: 8
+  num_layers: 4
+  dim_feedforward: 512
+  dropout: 0.1
+  num_classes: 3
+
+  # 关闭所有创新点
+  use_multimodal: false
+  use_contrastive: false
+  use_relative_bias: false
+  uncertainty_weighting: false
+
+  # 使用标准正弦位置编码
+  periods: null
+
+training:
+  epochs: 50
+  batch_size: 32
+  learning_rate: 0.001
+  weight_decay: 0.0001
+
+  # 标准CE损失
+  use_focal_loss: false
+  focal_gamma: 0.0
+
+  # 标准采样
+  use_balanced_sampler: false
+
+  # 无Mixup
+  use_mixup: false
+
+  # 学习率调度
+  lr_scheduler: "cosine"
+  lr_warmup_epochs: 5
+
+  # 早停
+  early_stopping_patience: 10
+
+data:
+  train_path: "data/tracked_output"
+  val_split: 0.2
+  seq_len: 32
+  fps: 30
+
+logging:
+  log_dir: "experiments/logs/baseline"
+  save_every: 10
+  eval_every: 1

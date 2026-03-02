@@ -1,0 +1,94 @@
+# 完整模型配置 - 启用所有四个创新点
+
+model:
+  name: "SBRN"
+  pose_input_dim: 3
+  appearance_dim: 512
+  motion_dim: 64
+  d_model: 128
+  nhead: 8
+  num_layers: 4
+  dim_feedforward: 512
+  dropout: 0.1
+  num_classes: 3
+  hidden_dim: 128
+
+  # 创新点1: PAPE
+  use_relative_bias: true
+  periods: [15, 30, 60]  # 0.5s, 1.0s, 2.0s @ 30fps
+
+  # 创新点2: BPCL
+  use_contrastive: true
+  num_prototypes_per_class: 3
+  temperature: 0.07
+  contrastive_margin: 0.5
+
+  # 创新点3: DGCMF
+  use_multimodal: true
+  use_quality_estimation: true
+
+  # 不确定性加权
+  uncertainty_weighting: true
+
+training:
+  epochs: 50
+  batch_size: 32
+  learning_rate: 0.001
+  weight_decay: 0.0001
+
+  # 创新点4: CIAT
+  # Focal Loss
+  use_focal_loss: true
+  focal_gamma_max: 2.0
+  focal_warmup_epochs: 10
+  label_smoothing: 0.1
+
+  # 渐进式平衡采样
+  use_balanced_sampler: true
+  sampler_warmup_epochs: 10
+  final_balance_ratio: 0.8
+
+  # Mixup
+  use_mixup: true
+  mixup_alpha: 0.2
+  mixup_prob: 0.5
+
+  # 对比学习权重
+  contrastive_weight: 0.3
+
+  # 学习率调度
+  lr_scheduler: "cosine"
+  lr_warmup_epochs: 5
+  lr_min_ratio: 0.01
+
+  # 早停
+  early_stopping_patience: 10
+
+data:
+  train_path: "data/tracked_output"
+  val_split: 0.2
+  seq_len: 32
+  fps: 30
+
+  # 多模态输入
+  use_appearance: true
+  use_motion: true
+
+logging:
+  log_dir: "experiments/logs/full_model"
+  save_every: 10
+  eval_every: 1
+
+  # 可视化
+  visualize_attention: true
+  visualize_prototypes: true
+
+evaluation:
+  # 评估指标
+  metrics: ["accuracy", "f1_macro", "f1_per_class", "auc_roc", "confusion_matrix"]
+
+  # 关键指标 (用于模型选择)
+  primary_metric: "f1_macro"
+
+  # 少数类关注
+  minority_class_id: 0  # normal

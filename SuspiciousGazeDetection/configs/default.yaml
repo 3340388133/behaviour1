@@ -1,0 +1,215 @@
+# SuspiciousGazeDetection Default Configuration
+# 可疑张望行为识别系统配置文件
+
+# ==================== 项目基础配置 ====================
+project:
+  name: "SuspiciousGazeDetection"
+  version: "1.0.0"
+  description: "可疑张望行为识别系统"
+  seed: 42
+
+# ==================== 路径配置 ====================
+paths:
+  data_root: "../data"
+  raw_videos: "../data/raw_videos"
+  tracked_output: "../data/tracked_output"
+  checkpoints: "./checkpoints"
+  logs: "./logs"
+  output: "./output"
+
+# ==================== 数据配置 ====================
+data:
+  # 视频参数
+  video:
+    fps: 25
+    frame_size: [640, 480]
+
+  # 数据集划分
+  split:
+    train: 0.7
+    val: 0.15
+    test: 0.15
+
+  # 数据增强
+  augmentation:
+    enabled: true
+    horizontal_flip: 0.5
+    brightness: 0.2
+    contrast: 0.2
+
+  # 机位配置
+  camera:
+    front:  # 正机位
+      yaw_offset: 0.0
+      pitch_offset: 0.0
+    side:   # 侧机位
+      yaw_offset: 90.0  # 侧面需要补偿90度
+      pitch_offset: 0.0
+
+# ==================== 模型配置 ====================
+model:
+  # Stage 1: 目标检测
+  detector:
+    name: "yolov8m"
+    weights: "yolov8m.pt"
+    conf_threshold: 0.5
+    iou_threshold: 0.45
+    classes: [0]  # 只检测人
+
+  # Stage 2: 目标追踪
+  tracker:
+    name: "strongsort"
+    reid_model: "osnet_x0_25"
+    max_age: 30
+    n_init: 3
+    max_iou_distance: 0.7
+
+  # Stage 3: 头部姿态估计 (WHENet+)
+  head_pose:
+    name: "whenet_plus"
+    backbone: "efficientnet_b0"
+    pretrained: true
+    # 注意力机制配置
+    attention:
+      enabled: true
+      type: "self_attention"
+      num_heads: 8
+      dropout: 0.1
+    # 特征融合配置
+    feature_fusion:
+      enabled: true
+      scales: [1, 2, 4]
+      fusion_type: "concat"  # concat, add, attention
+    # 输出角度范围
+    output:
+      yaw_range: [-180, 180]
+      pitch_range: [-90, 90]
+      roll_range: [-90, 90]
+
+  # Stage 4: 时序模型
+  temporal:
+    name: "bilstm_attention"
+    # 序列配置
+    sequence:
+      window_size: 30      # 时间窗口大小(帧数)
+      stride: 15           # 滑动步长
+      min_sequence: 10     # 最小序列长度
+    # LSTM配置
+    lstm:
+      hidden_size: 256
+      num_layers: 2
+      bidirectional: true
+      dropout: 0.3
+    # GRU配置 (备选)
+    gru:
+      hidden_size: 256
+      num_layers: 2
+      bidirectional: true
+      dropout: 0.3
+    # 时间注意力
+    temporal_attention:
+      enabled: true
+      num_heads: 4
+
+  # Stage 5: 行为分类器
+  classifier:
+    name: "cnn3d"
+    # 3D-CNN配置
+    cnn3d:
+      in_channels: 6       # yaw, pitch, roll, x, y, scale
+      hidden_channels: [64, 128, 256]
+      kernel_size: [3, 3, 3]
+      pool_size: [2, 2, 2]
+    # 输出类别
+    num_classes: 2         # 正常, 可疑张望
+
+# ==================== 训练配置 ====================
+training:
+  # 基础配置
+  epochs: 100
+  batch_size: 16
+  num_workers: 4
+
+  # 优化器
+  optimizer:
+    name: "adamw"
+    lr: 1e-4
+    weight_decay: 1e-4
+    betas: [0.9, 0.999]
+
+  # 学习率调度
+  scheduler:
+    name: "cosine"
+    warmup_epochs: 5
+    min_lr: 1e-6
+
+  # 损失函数
+  loss:
+    classification: "cross_entropy"
+    pose_estimation: "geodesic"  # 测地距离损失
+    weights:
+      classification: 1.0
+      pose: 0.5
+
+  # 早停
+  early_stopping:
+    enabled: true
+    patience: 10
+    min_delta: 0.001
+
+  # 检查点
+  checkpoint:
+    save_best: true
+    save_last: true
+    save_every: 10
+
+# ==================== 推理配置 ====================
+inference:
+  batch_size: 1
+  device: "cuda"
+  half_precision: false
+
+  # 可疑行为判定阈值
+  suspicious_detection:
+    confidence_threshold: 0.7
+    # 张望行为特征
+    gaze_pattern:
+      min_yaw_change: 30.0       # 最小偏航角变化(度)
+      min_frequency: 3           # 最小张望次数
+      time_window: 5.0           # 时间窗口(秒)
+
+  # 输出配置
+  output:
+    save_video: true
+    save_json: true
+    draw_pose: true
+    draw_bbox: true
+
+# ==================== 可视化配置 ====================
+visualization:
+  # 边界框颜色
+  colors:
+    normal: [0, 255, 0]      # 绿色
+    suspicious: [0, 0, 255]   # 红色
+    tracking: [255, 255, 0]   # 黄色
+
+  # 姿态可视化
+  pose:
+    axis_length: 50
+    line_width: 2
+
+  # 信息显示
+  info:
+    show_id: true
+    show_pose: true
+    show_confidence: true
+    font_scale: 0.6
+
+# ==================== 日志配置 ====================
+logging:
+  level: "INFO"
+  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+  tensorboard: true
+  wandb:
+    enabled: false
+    project: "suspicious-gaze-detection"

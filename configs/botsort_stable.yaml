@@ -1,0 +1,25 @@
+# Stable BoT-SORT config for long-term person tracking
+# Key changes: Enable ReID, longer track buffer, more lenient matching
+
+tracker_type: botsort
+
+# Detection thresholds - more lenient to avoid losing tracks
+track_high_thresh: 0.3      # Lower: keep more detections (was 0.25)
+track_low_thresh: 0.1       # Keep low-confidence matches
+new_track_thresh: 0.4       # Higher: reduce false new tracks (was 0.25)
+
+# Track persistence - much longer buffer for occlusion handling
+track_buffer: 90            # 3 seconds at 30fps (was 30)
+
+# Matching - more lenient
+match_thresh: 0.7           # Lower: easier to match (was 0.8)
+fuse_score: True
+
+# Camera motion compensation
+gmc_method: sparseOptFlow
+
+# ReID - ENABLED for identity preservation
+with_reid: True             # CRITICAL: Enable ReID (was False)
+proximity_thresh: 0.3       # Lower: consider more tracks for ReID (was 0.5)
+appearance_thresh: 0.5      # Lower: more lenient appearance matching (was 0.8)
+model: auto
