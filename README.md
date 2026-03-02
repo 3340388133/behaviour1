@@ -163,8 +163,7 @@ SBRNConfig(
 ├── src/                            # 核心源码
 │   ├── recognition/                # ★ 行为识别模块（核心创新）
 │   │   ├── models/
-│   │   │   ├── sbrn.py            # SBRN 主模型（4个创新点集成）
-│   │   │   └── tahpnet.py         # TAHPNet 替代架构
+│   │   │   └── sbrn.py            # SBRN 主模型（4个创新点集成）
 │   │   ├── position_encoding/
 │   │   │   └── periodic_aware_pe.py  # 创新点1: PAPE
 │   │   ├── contrastive/
@@ -187,16 +186,8 @@ SBRNConfig(
 │   │   ├── fusion.py              # 规则+模型加权融合
 │   │   ├── rule_scorer.py         # 规则评分器
 │   │   └── model_scorer.py        # 模型评分器
+│   ├── alert_generator.py         # 告警生成
 │   └── benchmark/                 # 基准测试与对比实验
-│
-├── SuspiciousGazeDetection/       # 头部姿态估计子系统
-│   └── src/models/
-│       ├── head_pose/
-│       │   ├── whenet.py          # WHENet 头部姿态估计
-│       │   └── whenet_plus.py     # WHENet+ 增强版（注意力+特征融合）
-│       ├── temporal/              # 时序建模 (LSTM/GRU/Attention)
-│       ├── classifier/            # 行为分类器 (3D-CNN)
-│       └── tracker/               # StrongSORT 跟踪器
 │
 ├── step1~step8*.py                # 完整处理管道脚本
 │   ├── step1_build_dataset_structure.py  # 数据集结构构建
@@ -206,11 +197,20 @@ SBRNConfig(
 │   ├── step5_build_dataset.py            # 训练数据集构建
 │   ├── step6_train_recognition.py        # 模型训练
 │   ├── step7_head_detection_inference.py # 推理（核心推理入口）
-│   └── step8_ablation_baseline.py        # 消融实验
+│   ├── step7_visualize_results.py        # 结果可视化
+│   ├── step8_ablation_baseline.py        # 消融实验
+│   └── step8b_sensitivity.py             # 敏感性分析
+│
+├── train_sbrn_6class.py           # SBRN 训练
+├── train_6class_balanced.py       # 平衡训练
+├── run_inference.py               # 推理入口
+├── run_full_pipeline.py           # 完整管道
+├── generate_*_figures.py          # 论文图表生成（7个）
 │
 ├── experiments/                   # 实验配置与结果
 │   ├── configs/                   # 消融实验配置 (baseline/PAPE/BPCL/DGCMF)
-│   └── scripts/                   # 训练/评估脚本
+│   ├── scripts/                   # 训练/评估/推理脚本
+│   └── *.json                     # 实验结果数据
 │
 ├── thesis_figures/                # 论文图表与实验报告
 │   ├── experiment_report.md       # 完整实验报告
@@ -221,6 +221,9 @@ SBRNConfig(
 │   ├── whenet_fig*.png            # WHENet姿态分析图
 │   ├── sensitivity_fig*.png       # 参数敏感性分析
 │   └── table*.tex                 # LaTeX 实验结果表
+│
+├── scripts/                       # 辅助批处理脚本
+├── configs/                       # 配置文件
 │
 ├── tests/test_recognition/        # 单元测试
 │   ├── test_sbrn.py               # SBRN 模型测试
